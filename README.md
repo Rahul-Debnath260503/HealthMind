@@ -11,7 +11,7 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline that let
 
 Two primary entry points:
 - `connect_memory_with_llm.py` – CLI prototype using a HuggingFace Inference endpoint (e.g. Mistral 7B Instruct).
-- `medibot.py` – Streamlit chat UI using a Groq-hosted model (Llama 4 Maverick) with retrieval.
+- `HealthMind.py` – Streamlit chat UI using a Groq-hosted model (Llama 4 Maverick) with retrieval.
 
 ## ✨ Key Features
 - FAISS vector store for fast semantic retrieval
@@ -39,7 +39,7 @@ User Query --> Retriever (top-k) ---------------┘
 |------|------|
 | `create_memory_for_llm.py` | Builds FAISS index from PDFs (embedding + persist) |
 | `connect_memory_with_llm.py` | CLI RAG query using HuggingFaceEndpoint |
-| `medibot.py` | Streamlit chat interface using Groq Chat model + FAISS retrieval |
+| `HealthMind.py` | Streamlit chat interface using Groq Chat model + FAISS retrieval |
 | `vectorstore/db_faiss` | Persisted FAISS index (created beforehand) |
 | `data/` | PDF source documents |
 
@@ -122,12 +122,12 @@ Enter a query at the prompt: `How is hypertension managed?`
 ```zsh
 source .venv/bin/activate
 export GROQ_API_KEY=groq_...  # if not in .env
-streamlit run medibot.py
+streamlit run HealthMind.py
 ```
 Open the URL shown (default: http://localhost:8501) and start chatting.
 
 ## 🔄 Switching Embedding Modes
-`medibot.py` includes:
+`HealthMind.py` includes:
 ```python
 get_vectorstore()              # local model download
 get_vectorstore_hf_api(token)  # uses HuggingFace API
@@ -186,7 +186,7 @@ This tool is for educational and reference purposes only. It does **not** provid
 ## ✅ Minimal Usage Recap
 ```zsh
 python create_memory_for_llm.py            # build index (one time)
-streamlit run medibot.py                   # chat UI (needs GROQ_API_KEY)
+streamlit run HealthMind.py                   # chat UI (needs GROQ_API_KEY)
 python connect_memory_with_llm.py          # CLI (needs HF_TOKEN)
 ```
 
